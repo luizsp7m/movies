@@ -13,7 +13,7 @@ export function Pagination({ numberPages, currentPage, onChangePages }: Props) {
         <button
           key={index}
           className={currentPage === index + 1 ? `selected` : ""}
-          onClick={() => onChangePages(index + 1 + item)}
+          onClick={() => onChangePages(index + 1)}
         >
           {index + 1}
         </button>
