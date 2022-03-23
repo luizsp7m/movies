@@ -24,15 +24,15 @@ export function Sidebar() {
           </NavItem>
         </Link>
 
-        <Link href="/series" passHref>
-          <NavItem selected={asPath === "/series" && true}>
-            <BsCollectionPlayFill />
-          </NavItem>
-        </Link>
-
         <Link href="/movies" passHref>
           <NavItem selected={asPath === "/movies" && true}>
             <MdLocalMovies />
+          </NavItem>
+        </Link>
+
+        <Link href="/series" passHref>
+          <NavItem selected={asPath === "/series" && true}>
+            <BsCollectionPlayFill />
           </NavItem>
         </Link>
 

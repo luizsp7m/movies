@@ -21,3 +21,8 @@ export const Container = styled.div`
     background: ${props => props.theme.LOGO_COLOR};
   }
 `;
+
+export const Disclaimer = styled.span`
+  font-size: 1.45rem;
+  color: ${props => props.theme.TEXT_TERTIARY};
+`;

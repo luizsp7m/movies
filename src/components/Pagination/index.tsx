@@ -1,19 +1,23 @@
-import { Container } from "./styles";
+import { Container, Disclaimer } from "./styles";
 
 interface Props {
   numberPages: number;
   currentPage: number;
-  onChangePages: (page: number) => void;
+  onChangePage: (page: number) => void;
 }
 
-export function Pagination({ numberPages, currentPage, onChangePages }: Props) {
+export function Pagination({ numberPages, currentPage, onChangePage }: Props) {
+  if (numberPages === 0) {
+    return <Disclaimer>Esses são os filmes ou séries recomendados para você, faça uma busca no campo acima caso não encontrou o que desejava</Disclaimer>
+  }
+
   return (
     <Container>
       {Array.from(Array(numberPages), (item, index) => (
         <button
           key={index}
           className={currentPage === index + 1 ? `selected` : ""}
-          onClick={() => onChangePages(index + 1)}
+          onClick={() => onChangePage(index + 1)}
         >
           {index + 1}
         </button>

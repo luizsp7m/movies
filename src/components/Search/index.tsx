@@ -5,19 +5,20 @@ import { FormEvent, useState } from "react";
 
 interface Props {
   placeholder: string;
-  inputSearch: string;
-  onChangeInputSearch: (value: string) => void;
-  onSubmit: () => void;
+  onSearch: (query: string) => void;
 }
 
-export function Search({ placeholder, inputSearch, onChangeInputSearch, onSubmit }: Props) {
-  function handleSubmit(e: FormEvent) {
+export function Search({ placeholder, onSearch }: Props) {
+  const [inputSearch, setInputSearch] = useState("");
+
+  function onSubmit(e: FormEvent) {
     e.preventDefault();
-    onSubmit();
+    
+    onSearch(inputSearch);
   }
 
   return (
-    <Container onSubmit={handleSubmit}>
+    <Container onSubmit={onSubmit}>
       <button type="submit">
         <AiOutlineSearch />
       </button>
@@ -26,7 +27,7 @@ export function Search({ placeholder, inputSearch, onChangeInputSearch, onSubmit
         type="text"
         placeholder={placeholder}
         value={inputSearch}
-        onChange={({ target }) => onChangeInputSearch(target.value) }
+        onChange={({ target }) => setInputSearch(target.value) }
       />
     </Container>
   );

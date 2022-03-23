@@ -14,7 +14,7 @@ export function CardList({ title, data, media, numberPages, currentPage }: Props
     <Container>
       <h1>{title}</h1>
 
-      { numberPages && <span>Página {currentPage} de {numberPages}</span> }
+      { numberPages !== undefined && numberPages > 0 && <span>Página {currentPage} de {numberPages}</span> }
 
       <Grid>
         {data.map(item => (

@@ -2,56 +2,51 @@ import { Layout } from "../components/Layout";
 import { Search } from "../components/Search";
 import { CardList } from "../components/CardList";
 import { useEffect, useState } from "react";
-import { getPopularSeries, searchSeries } from "../utils/getData";
+import { popular, search } from "../utils/getData";
 import { Pagination } from "../components/Pagination";
 
 export default function Series() {
   const [series, setSeries] = useState([]);
   const [title, setTitle] = useState("Séries recomendadas para você");
-  const [inputSearch, setInputSearch] = useState("");
   const [searchParam, setSearchParam] = useState("");
-  const [numberPages, setNumberPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [numberPages, setNumberPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  function onChangeInputSearch(value: string) {
-    setInputSearch(value);
-  }
-
-  function onSearch() {
-    if (inputSearch.trim() === "") {
-      setTitle("Séries recomendadas para você");
-      getPopularSeries().then(response => setSeries(response));
+  function onSearch(query: string) {
+    if (query.trim() === "") {
+      popular("tv").then(response => setSeries(response));
+      setTitle("Filmes recomendados para você");
+      setSearchParam("");
+      setNumberPages(0);
+      setCurrentPage(0);
       return;
     }
 
-    setSearchParam(inputSearch);
-
-    searchSeries(inputSearch, 1).then(response => {
-      setSeries(response.results);
-      setTitle(`${response.total_results} resultados encontrados para "${inputSearch}"`);
-      setNumberPages(response.total_pages);
+    search("tv", query, 1).then(response => {
+      setSearchParam(query);
       setCurrentPage(response.page);
+      setNumberPages(response.total_pages);
+      setSeries(response.results);
+      setTitle(`${response.total_results} resultados encontrados para "${query}"`);
     });
   }
 
-  function onChangePages(page: number) {
-    searchSeries(searchParam, page).then(response => {
-      setSeries(response.results);
+  function onChangePage(page: number) {
+    search("tv", searchParam, page).then(response => {
       setCurrentPage(response.page);
+      setSeries(response.results);
     });
   }
 
   useEffect(() => {
-    getPopularSeries().then(response => setSeries(response));
+    popular("tv").then(response => setSeries(response));
   }, []);
 
   return (
     <Layout title="Séries">
       <Search
         placeholder="Procurar por séries"
-        inputSearch={inputSearch}
-        onChangeInputSearch={onChangeInputSearch}
-        onSubmit={onSearch}
+        onSearch={onSearch}
       />
 
       <CardList
@@ -65,7 +60,7 @@ export default function Series() {
       <Pagination
         numberPages={numberPages}
         currentPage={currentPage}
-        onChangePages={onChangePages}
+        onChangePage={onChangePage}
       />
     </Layout>
   );
