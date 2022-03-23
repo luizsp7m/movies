@@ -6,11 +6,9 @@ interface Props {
   onChangePage: (page: number) => void;
 }
 
-export function Pagination({ numberPages, currentPage, onChangePage }: Props) {
-  if (numberPages === 0) {
-    return <Disclaimer>Esses são os filmes ou séries recomendados para você, faça uma busca no campo acima caso não encontrou o que desejava</Disclaimer>
-  }
+const siblingCount = 2;
 
+export function Pagination({ numberPages, currentPage, onChangePage }: Props) {
   return (
     <Container>
       {Array.from(Array(numberPages), (item, index) => (

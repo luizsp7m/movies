@@ -14,11 +14,14 @@ export default function Series() {
 
   function onSearch(query: string) {
     if (query.trim() === "") {
-      popular("tv").then(response => setSeries(response));
-      setTitle("Filmes recomendados para você");
-      setSearchParam("");
-      setNumberPages(0);
-      setCurrentPage(0);
+      popular("tv", 1).then(response => {
+        setCurrentPage(response.page);
+        setNumberPages(10);
+        setSeries(response.results);
+        setTitle("Séries recomendadas para você");
+        setSearchParam("");
+      });
+
       return;
     }
 
@@ -32,6 +35,15 @@ export default function Series() {
   }
 
   function onChangePage(page: number) {
+    if (!searchParam) {
+      popular("tv", page).then(response => {
+        setCurrentPage(response.page);
+        setSeries(response.results);
+      });
+
+      return;
+    }
+
     search("tv", searchParam, page).then(response => {
       setCurrentPage(response.page);
       setSeries(response.results);
@@ -39,7 +51,11 @@ export default function Series() {
   }
 
   useEffect(() => {
-    popular("tv").then(response => setSeries(response));
+    popular("tv", 1).then(response => {
+      setCurrentPage(response.page);
+      setNumberPages(10);
+      setSeries(response.results);
+    });
   }, []);
 
   return (

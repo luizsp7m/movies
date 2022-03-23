@@ -9,8 +9,8 @@ export default function Home() {
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
-    popular("movie").then(response => setMovies(response));
-    popular("tv").then(response => setSeries(response));
+    popular("movie", 1).then(response => setMovies(response.results));
+    popular("tv", 1).then(response => setSeries(response.results));
   }, []);
 
   return (

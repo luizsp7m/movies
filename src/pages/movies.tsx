@@ -14,11 +14,14 @@ export default function Movies() {
 
   function onSearch(query: string) {
     if (query.trim() === "") {
-      popular("movie").then(response => setMovies(response));
-      setTitle("Filmes recomendados para você");
-      setSearchParam("");
-      setNumberPages(0);
-      setCurrentPage(0);
+      popular("movie", 1).then(response => {
+        setCurrentPage(response.page);
+        setNumberPages(10);
+        setMovies(response.results);
+        setTitle("Filmes recomendados para você");
+        setSearchParam("");
+      });
+
       return;
     }
 
@@ -32,6 +35,15 @@ export default function Movies() {
   }
 
   function onChangePage(page: number) {
+    if (!searchParam) {
+      popular("movie", page).then(response => {
+        setCurrentPage(response.page);
+        setMovies(response.results);
+      });
+
+      return;
+    }
+
     search("movie", searchParam, page).then(response => {
       setCurrentPage(response.page);
       setMovies(response.results);
@@ -39,7 +51,11 @@ export default function Movies() {
   }
 
   useEffect(() => {
-    popular("movie").then(response => setMovies(response));
+    popular("movie", 1).then(response => {
+      setCurrentPage(response.page);
+      setNumberPages(10);
+      setMovies(response.results);
+    });
   }, []);
 
   return (

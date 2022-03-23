@@ -5,14 +5,14 @@ export const trending = async (media: string) => {
   return data.results;
 }
 
-export const popular = async (media: string) => {
-  const { data } = await tmdb.get(`/${media}/popular?language=pt-BR`);
-  return data.results;
-}
-
 export const upcoming = async (media: string) => {
   const { data } = await tmdb.get(`/${media}/upcoming?language=pt-BR`);
   return data.results;
+}
+
+export const popular = async (media: string, page: number) => {
+  const { data } = await tmdb.get(`/${media}/popular?language=pt-BR&page=${page}`);
+  return data;
 }
 
 export const search = async (media: string, query: string, page: number) => {

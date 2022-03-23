@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { CardItem } from "../CardItem";
 import { Container, Grid } from "./styles";
 
@@ -10,11 +11,18 @@ interface Props {
 }
 
 export function CardList({ title, data, media, numberPages, currentPage }: Props) {
+  useEffect(() => {
+    window.scrollTo({
+      behavior: "smooth",
+      top: 0,
+    });
+  }, [data]);
+
   return (
     <Container>
       <h1>{title}</h1>
 
-      { numberPages !== undefined && numberPages > 0 && <span>Página {currentPage} de {numberPages}</span> }
+      {numberPages !== undefined && numberPages > 0 && <span>Página {currentPage} de {numberPages}</span>}
 
       <Grid>
         {data.map(item => (
