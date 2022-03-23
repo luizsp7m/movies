@@ -19,6 +19,14 @@ export const GlobalStyle = createGlobalStyle`
 
   }
 
+  .slick-list {
+    margin: 0 -0.8rem;
+  }
+
+  .slick-slide >div {
+    padding: 0 0.8rem;
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
   }

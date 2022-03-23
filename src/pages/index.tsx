@@ -2,6 +2,7 @@ import { Layout } from "../components/Layout";
 import { CardList } from "../components/CardList";
 import { useState, useEffect } from "react";
 import { popular } from "../utils/getData";
+import { Carousel } from "../components/Carousel";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -14,8 +15,9 @@ export default function Home() {
 
   return (
     <Layout title="Início">
-      <CardList title="Tendências de filmes para você" data={movies} media="movie" />
-      <CardList title="Tendências de séries para você" data={series} media="serie" />
+      <Carousel />
+      <CardList title="Filmes populares para você" data={movies} media="movie" />
+      <CardList title="Séries populares para você" data={series} media="serie" />
     </Layout>
   );
 }
