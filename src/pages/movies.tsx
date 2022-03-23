@@ -16,7 +16,7 @@ export default function Movies() {
     if (query.trim() === "") {
       popular("movie", 1).then(response => {
         setCurrentPage(response.page);
-        setNumberPages(10);
+        setNumberPages(response.total_pages < 500 ? response.total_pages : 500);
         setMovies(response.results);
         setTitle("Filmes recomendados para você");
         setSearchParam("");
@@ -28,7 +28,7 @@ export default function Movies() {
     search("movie", query, 1).then(response => {
       setSearchParam(query);
       setCurrentPage(response.page);
-      setNumberPages(response.total_pages);
+      setNumberPages(response.total_pages < 500 ? response.total_pages : 500);
       setMovies(response.results);
       setTitle(`${response.total_results} resultados encontrados para "${query}"`);
     });
@@ -53,7 +53,7 @@ export default function Movies() {
   useEffect(() => {
     popular("movie", 1).then(response => {
       setCurrentPage(response.page);
-      setNumberPages(10);
+      setNumberPages(response.total_pages < 500 ? response.total_pages : 500);
       setMovies(response.results);
     });
   }, []);

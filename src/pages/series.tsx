@@ -16,7 +16,7 @@ export default function Series() {
     if (query.trim() === "") {
       popular("tv", 1).then(response => {
         setCurrentPage(response.page);
-        setNumberPages(10);
+        setNumberPages(response.total_pages < 500 ? response.total_pages : 500);
         setSeries(response.results);
         setTitle("Séries recomendadas para você");
         setSearchParam("");
@@ -28,7 +28,7 @@ export default function Series() {
     search("tv", query, 1).then(response => {
       setSearchParam(query);
       setCurrentPage(response.page);
-      setNumberPages(response.total_pages);
+      setNumberPages(response.total_pages < 500 ? response.total_pages : 500);
       setSeries(response.results);
       setTitle(`${response.total_results} resultados encontrados para "${query}"`);
     });
@@ -53,7 +53,7 @@ export default function Series() {
   useEffect(() => {
     popular("tv", 1).then(response => {
       setCurrentPage(response.page);
-      setNumberPages(10);
+      setNumberPages(response.total_pages < 500 ? response.total_pages : 500);
       setSeries(response.results);
     });
   }, []);
