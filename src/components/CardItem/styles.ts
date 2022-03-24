@@ -1,45 +1,27 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 `;
 
 export const CardImage = styled.div`
-  position: relative;
-
-  &:hover {
+  a {
     img {
-      opacity: 0.50;
+      width: 100%;
+      height: 15rem;
+      object-fit: cover;
+      border-radius: 1rem;
+      transition: opacity 0.25s ease-in-out;
+      cursor: pointer;
     }
-  }
 
-  img {
-    width: 100%;
-    height: 15rem;
-    object-fit: cover;
-    border-radius: 1rem;
-    transition: opacity 0.25s ease-in-out;
-    cursor: pointer;
-  }
-
-  button {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    outline: 0;
-    font-size: 0;
-    border: 0;
-    height: 3.2rem;
-    width: 3.2rem;
-    border-radius: 50%;
-    cursor: pointer;
-
-    svg {
-      font-size: 1.6rem;
-      color: ${props => props.theme.TEXT_PRIMARY};
+    &:hover {
+      img {
+        opacity: 0.5;
+      }
     }
   }
 `;
@@ -68,5 +50,29 @@ export const CardInformation = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+`;
+
+export const Button = styled.button`
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  height: 3.2rem;
+  width: 3.2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  border: 0;
+  outline: 0;
+  font-size: 0;
+  transition: background 0.25s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background: ${props => props.theme.LOGO_COLOR};
+  }
+
+  svg {
+    font-size: 1.6rem;
+    color: ${props => props.theme.TEXT_PRIMARY};
   }
 `;

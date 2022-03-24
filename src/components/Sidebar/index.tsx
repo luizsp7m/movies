@@ -1,12 +1,11 @@
 import Link from "next/link";
 
 import { Container, Logo, Nav, NavItem, UserImage } from "./styles";
+import { useRouter } from "next/router";
 
 import { FaHotjar, FaMicrosoft, FaBookmark } from "react-icons/fa";
 import { MdLocalMovies } from "react-icons/md";
 import { BsCollectionPlayFill } from "react-icons/bs";
-
-import { useRouter } from "next/router";
 
 export function Sidebar() {
   const { asPath } = useRouter();

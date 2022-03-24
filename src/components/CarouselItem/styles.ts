@@ -12,10 +12,13 @@ export const PosterImage = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin: 0 1.6rem; */
   position: relative;
   border-radius: 0.25rem;
   cursor: pointer;
+
+  a {
+    text-decoration: none;
+  }
 
   &:hover {
     ${PosterImage} {
@@ -57,5 +60,6 @@ export const Summary = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: ${props => props.theme.TEXT_PRIMARY};
   }
 `;

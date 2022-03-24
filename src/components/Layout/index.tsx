@@ -1,10 +1,10 @@
 import Head from "next/head";
 
-import { ReactNode } from "react";
-import { Sidebar } from "../Sidebar";
-import { Main } from "../Main";
-
 import { Container } from "./styles";
+import { ReactNode } from "react";
+import { Header } from "../Header";
+import { Main } from "../Main";
+import { Footer } from "../Footer";
 
 interface Props {
   title: string;
@@ -18,11 +18,13 @@ export function Layout({ children, title }: Props) {
         <title>Movies - {title}</title>
       </Head>
 
-      <Sidebar />
+      <Header />
 
       <Main>
         {children}
       </Main>
+
+      <Footer />
     </Container>
   );
 }
