@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface ButtonProps {
+  selected?: boolean;
+}
+
 export const Container = styled.div`
   position: relative;
   display: flex;
@@ -53,13 +57,13 @@ export const CardInformation = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   position: absolute;
   right: 1rem;
   top: 1rem;
   height: 3.2rem;
   width: 3.2rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: ${props => props.selected ? props.theme.LOGO_COLOR : "rgba(0, 0, 0, 0.5)"};
   border-radius: 50%;
   border: 0;
   outline: 0;

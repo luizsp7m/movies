@@ -2,9 +2,10 @@ import Link from "next/link";
 
 import { Container, CardImage, CardInformation, Button } from "./styles";
 
-import { FaRegBookmark } from "react-icons/fa";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import { MdLocalMovies } from "react-icons/md";
+import { useApp } from "../../contexts/AppContext";
 
 export interface Movie {
   id: number;
@@ -43,6 +44,10 @@ export function CardItem({ data, media }: Props) {
 }
 
 export function MovieCard({ movie }: MovieCardProps) {
+  const { addToFavorites, removeFromFavorites, myMovies } = useApp();
+
+  let exists = myMovies.find(myMovie => myMovie.mediaId === movie.id);
+
   return (
     <Container>
       <CardImage>
@@ -63,14 +68,23 @@ export function MovieCard({ movie }: MovieCardProps) {
         <h5>{movie.title}</h5>
       </CardInformation>
 
-      <Button onClick={() => alert("😅")}>
-        <FaRegBookmark />
-      </Button>
-    </Container>
+      {exists ? (
+        <Button onClick={() => removeFromFavorites(exists.docId)} selected={true}>
+          <FaBookmark />
+        </Button>
+      ) : (
+        <Button onClick={() => addToFavorites(movie.id, "movie")}>
+          <FaRegBookmark />
+        </Button>
+      )
+      }
+    </Container >
   );
 }
 
 export function SerieCard({ serie }: SerieCardProps) {
+  const { addToFavorites } = useApp();
+
   return (
     <Container>
       <CardImage>
@@ -91,7 +105,7 @@ export function SerieCard({ serie }: SerieCardProps) {
         <h5>{serie.name}</h5>
       </CardInformation>
 
-      <Button onClick={() => alert("😅")}>
+      <Button onClick={() => addToFavorites(serie.id, "serie")}>
         <FaRegBookmark />
       </Button>
     </Container>
