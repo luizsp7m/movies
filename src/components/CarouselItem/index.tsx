@@ -11,7 +11,7 @@ interface Props {
 export function CarouselItem({ data }: Props) {
   return (
     <Container>
-      <Link href={`/media/${data.id}`}>
+      <Link href={`/movie/${data.id}`}>
         <a>
           <PosterImage>
             <img src={data.backdrop_path ? `https://image.tmdb.org/t/p/w500/${data.poster_path}` : `/assets/image-default.jpg`} alt={data.title} />

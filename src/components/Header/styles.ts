@@ -22,6 +22,8 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  position: relative;
 `;
 
 export const Logo = styled.div`
@@ -35,6 +37,11 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   gap: 3.6rem;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  justify-content: center;
 `;
 
 export const NavItem = styled.a<NavItemProps>`
@@ -66,18 +73,50 @@ export const NavItem = styled.a<NavItemProps>`
 `;
 
 export const User = styled.div`
-  height: 4.5rem;
-  width: 4.5rem;
-  background: ${props => props.theme.TEXT_PRIMARY};
-  border-radius: 50%;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1.2rem;
+  z-index: 5;
+
+  span {
+    font-size: 1.35rem;
+    transition: color 0.25s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: ${props => props.theme.TEXT_SECONDARY};
+    }
+  }
+
   img {
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
     object-fit: cover;
+  }
+`;
+
+export const SignInButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 1rem 1.25rem;
+  background: ${props => props.theme.TEXT_PRIMARY};
+  cursor: pointer;
+  z-index: 5;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+  }
+
+  span {
+    font-size: 1.35rem;
+    color: ${props => props.theme.BACKGROUND_COLOR};
   }
 `;

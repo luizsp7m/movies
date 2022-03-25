@@ -5,13 +5,16 @@ import { GlobalStyle } from "../styles/global";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { AuthProvider } from "../contexts/AuthContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
-      <GlobalStyle />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 

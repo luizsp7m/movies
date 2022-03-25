@@ -1,13 +1,16 @@
 import Link from "next/link";
 
-import { Container, Wrapper, Logo, Nav, NavItem, User } from "./styles";
+import { Container, Wrapper, Logo, Nav, NavItem, User, SignInButton } from "./styles";
 import { FaBookmark, FaHotjar, FaMicrosoft } from "react-icons/fa";
 import { MdLocalMovies } from "react-icons/md";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function Header() {
   const { asPath } = useRouter();
+
+  const { signInWithGoogle, logout, user } = useAuth();
 
   return (
     <Container>
@@ -46,9 +49,17 @@ export function Header() {
           </Link>
         </Nav>
 
-        <User>
-          <img src="https://i.pinimg.com/originals/57/cf/b0/57cfb06bcd89e4a17b55e84b41719862.gif" alt="User" />
-        </User>
+        {!user ? (
+          <SignInButton onClick={signInWithGoogle}>
+            <img src="/assets/google.png" alt="Google" />
+            <span>Entrar com Google</span>
+          </SignInButton>
+        ) : (
+          <User>
+            <span onClick={logout}>Sair</span>
+            <img src={user.avatar} alt={user.name} />
+          </User>
+        )}
       </Wrapper>
     </Container>
   );

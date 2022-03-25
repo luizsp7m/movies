@@ -19,3 +19,8 @@ export const search = async (media: string, query: string, page: number) => {
   const { data } = await tmdb.get(`/search/${media}?language=pt-BR&query=${query}&page=${page}`);
   return data;
 }
+
+export const details = async (media: string, id: number) => {
+  const { data} = await tmdb.get(`${media}/${id}?language=pt-BR`); 
+  return data;
+}

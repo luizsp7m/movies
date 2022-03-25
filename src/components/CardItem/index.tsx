@@ -1,9 +1,10 @@
+import Link from "next/link";
+
 import { Container, CardImage, CardInformation, Button } from "./styles";
 
 import { FaRegBookmark } from "react-icons/fa";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import { MdLocalMovies } from "react-icons/md";
-import Link from "next/link";
 
 export interface Movie {
   id: number;
@@ -45,7 +46,7 @@ export function MovieCard({ movie }: MovieCardProps) {
   return (
     <Container>
       <CardImage>
-        <Link href={`/media/${movie.id}`}>
+        <Link href={`/movie/${movie.id}`}>
           <a>
             <img src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}` : `/assets/image-default.jpg`} alt={movie.title} />
           </a>
@@ -73,7 +74,7 @@ export function SerieCard({ serie }: SerieCardProps) {
   return (
     <Container>
       <CardImage>
-        <Link href={`/media/${serie.id}`}>
+        <Link href={`/`}>
           <a>
             <img src={serie.backdrop_path ? `https://image.tmdb.org/t/p/w500/${serie.backdrop_path}` : `/assets/image-default.jpg`} alt={serie.name} />
           </a>

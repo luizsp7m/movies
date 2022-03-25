@@ -24,7 +24,7 @@ export function Layout({ children, title }: Props) {
         {children}
       </Main>
 
-      <Footer />
+      {/* <Footer /> */}
     </Container>
   );
 }
