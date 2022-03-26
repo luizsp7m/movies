@@ -11,6 +11,10 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 62.5%;
   }
 
+  body {
+    font-size: 1.35rem;
+  }
+
   body, input, button {
     font-family: "Poppins", sans-serif;
   }

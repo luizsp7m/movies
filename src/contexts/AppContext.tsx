@@ -2,10 +2,11 @@ import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, query, where }
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { db } from "../services/firebase";
 import { useAuth } from "./AuthContext";
+import { toast } from "react-toastify";
 
 interface AppContextData {
   addToFavorites: (mediaId: number, mediaType: string) => Promise<void>;
-  removeFromFavorites: (docId: string) => Promise<void>;
+  removeFromFavorites: (docId: string, mediaType: string) => Promise<void>;
   myMovies: Array<Favorites>;
   mySeries: Array<Favorites>;
 }
@@ -30,7 +31,7 @@ export function AppProvider({ children }: AppProviderProps) {
 
   async function addToFavorites(mediaId: number, mediaType: string) {
     if (!user) {
-      alert("Entre com uma conta Google para adicionar aos favoritos");
+      toast.error("Usuário não autenticado");
       return;
     }
 
@@ -41,75 +42,39 @@ export function AppProvider({ children }: AppProviderProps) {
         userId: user.id,
       });
 
-      console.log("Document written with ID: ", docRef.id);
+      const message = mediaType === "movie" ? "Filme adicionado aos favoritos" : "Série adicionada aos favoritos";
+
+      toast.success(message);
 
     } catch (error) {
-      console.error("Error adding document: ", error);
+      toast.error("Houve um erro")
     }
   }
 
-  async function removeFromFavorites(docId: string) {
+  async function removeFromFavorites(docId: string, mediaType: string) {
     if (!user) {
+      toast.error("Usuário não autenticado");
       return;
     }
 
-    alert("😶");
+    try {
+      const docRef = await deleteDoc(doc(db, "favorites", docId));
 
-    // deleteDoc(doc(db, "favorites", docId)).then(() => {
-    //   alert("Documento deletado com sucesso");
-    // })
+      const message = mediaType === "movie" ? "Filme removido dos favoritos" : "Série removida dos favoritos";
+
+      toast.success(message);
+
+    } catch (error) {
+
+      toast.error("Houve um erro")
+    }
   }
-
-  // async function myFavorites() {
-  //   if (user) {
-  //     const favoritesRef = collection(db, "favorites");
-
-  //     const moviesQuery = query(favoritesRef, where("userId", "==", user?.id), where("mediaType", "==", "movie"));
-  //     const seriesQuery = query(favoritesRef, where("userId", "==", user?.id), where("mediaType", "==", "serie"));
-
-  //     const querySnapshotMovies = await getDocs(moviesQuery);
-  //     const querySnapshotSeries = await getDocs(seriesQuery);
-
-  //     let moviesArray: Favorites[] = [];
-  //     let seriesArray: Favorites[] = [];
-
-  //     querySnapshotMovies.forEach(doc => {
-  //       const movie = {
-  //         docId: doc.id,
-  //         mediaId: doc.data().mediaId,
-  //       }
-
-  //       moviesArray.push(movie);
-  //     });
-
-  //     querySnapshotSeries.forEach(doc => {
-  //       const serie = {
-  //         docId: doc.id,
-  //         mediaId: doc.data().mediaId,
-  //       }
-
-  //       seriesArray.push(serie);
-  //     });
-
-  //     setMyMovies(moviesArray);
-  //     setMySeries(seriesArray);
-
-  //     return;
-  //   }
-
-  //   setMyMovies([]);
-  //   setMySeries([]);
-  // }
-
-  // useEffect(() => {
-  //   myFavorites();
-  // }, [user]);
 
   useEffect(() => {
     if (user) {
       const favoritesRef = collection(db, "favorites");
 
-      const q = query(favoritesRef, where("userId", "==", user?.id));
+      const q = query(favoritesRef, where("userId", "==", user.id));
 
       const unsubscribe = onSnapshot(q, snapshot => {
         let movies: Favorites[] = [];
@@ -117,11 +82,17 @@ export function AppProvider({ children }: AppProviderProps) {
 
         snapshot.forEach(favorite => {
           if (favorite.data().mediaType === "movie") {
-            movies.push(favorite.data());
+            movies.push({
+              docId: favorite.id,
+              mediaId: favorite.data().mediaId,
+            });
           }
 
           if (favorite.data().mediaType === "serie") {
-            series.push(favorite.data());
+            series.push({
+              docId: favorite.id,
+              mediaId: favorite.data().mediaId,
+            });
           }
         });
 
@@ -131,6 +102,9 @@ export function AppProvider({ children }: AppProviderProps) {
 
       return () => unsubscribe();
     }
+
+    setMyMovies([]);
+    setMySeries([]);
   }, [user]);
 
   return (

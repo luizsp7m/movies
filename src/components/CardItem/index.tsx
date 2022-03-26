@@ -68,22 +68,25 @@ export function MovieCard({ movie }: MovieCardProps) {
         <h5>{movie.title}</h5>
       </CardInformation>
 
-      {exists ? (
-        <Button onClick={() => removeFromFavorites(exists.docId)} selected={true}>
+      {exists && (
+        <Button onClick={() => removeFromFavorites(exists.docId, "movie")} selected>
           <FaBookmark />
         </Button>
-      ) : (
+      )}
+
+      {!exists && (
         <Button onClick={() => addToFavorites(movie.id, "movie")}>
           <FaRegBookmark />
         </Button>
-      )
-      }
+      )}
     </Container >
   );
 }
 
 export function SerieCard({ serie }: SerieCardProps) {
-  const { addToFavorites } = useApp();
+  const { addToFavorites, removeFromFavorites, mySeries } = useApp();
+
+  let exists = mySeries.find(mySerie => mySerie.mediaId === serie.id);
 
   return (
     <Container>
@@ -105,9 +108,17 @@ export function SerieCard({ serie }: SerieCardProps) {
         <h5>{serie.name}</h5>
       </CardInformation>
 
-      <Button onClick={() => addToFavorites(serie.id, "serie")}>
-        <FaRegBookmark />
-      </Button>
+      {exists && (
+        <Button onClick={() => removeFromFavorites(exists.docId, "serie")} selected>
+          <FaBookmark />
+        </Button>
+      )}
+
+      {!exists && (
+        <Button onClick={() => addToFavorites(serie.id, "serie")}>
+          <FaRegBookmark />
+        </Button>
+      )}
     </Container>
   );
 }
