@@ -40,7 +40,7 @@ export const Information = styled.div`
   gap: 2.2rem;
   padding: 3.2rem;
   background: ${props => props.theme.SIDEBAR_COLOR};
-  width: 85%;
+  width: 95%;
   max-width: 768px;
   position: relative;
   top: -5rem;
@@ -62,6 +62,7 @@ export const Information = styled.div`
       display: flex;
       align-items: center;
       gap: 1.6rem;
+      flex-wrap: wrap;
 
       span {
         font-size: 1.45rem;

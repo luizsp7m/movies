@@ -10,6 +10,7 @@
     "date-fns": "^2.28.0",
     "firebase": "^9.6.10",
     "next": "latest",
+    "nprogress": "^0.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "15.0.0",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "17.0.4",
     "@types/react-dom": "17.0.3",
     "@types/react-slick": "^0.23.8",

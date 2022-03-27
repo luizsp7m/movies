@@ -15,7 +15,7 @@ export const CardImage = styled.div`
   a {
     img {
       width: 100%;
-      height: 15rem;
+      height: 18rem;
       object-fit: cover;
       border-radius: 1rem;
       transition: opacity 0.25s ease-in-out;
@@ -28,6 +28,14 @@ export const CardImage = styled.div`
       }
     }
   }
+
+  @media(max-width: 475px) {
+    a {
+      img {
+        height: 21.5rem;
+      }
+    }
+  } 
 `;
 
 export const CardInformation = styled.div`
@@ -61,8 +69,8 @@ export const Button = styled.button<ButtonProps>`
   position: absolute;
   right: 1rem;
   top: 1rem;
-  height: 3.2rem;
-  width: 3.2rem;
+  height: 4rem;
+  width: 4rem;
   background: ${props => props.selected ? props.theme.LOGO_COLOR : "rgba(0, 0, 0, 0.5)"};
   border-radius: 50%;
   border: 0;

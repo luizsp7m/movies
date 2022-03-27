@@ -5,6 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 2.2rem;
 
+  min-height: 50vh;
+
   & + & {
     margin-top: 3.2rem;
   }
