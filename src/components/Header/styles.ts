@@ -4,6 +4,10 @@ interface NavItemProps {
   selected: boolean;
 }
 
+interface NavProps {
+  toggled: boolean;
+}
+
 export const Container = styled.div`
   width: 100%;
   background: ${props => props.theme.BACKGROUND_COLOR};
@@ -33,7 +37,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const Nav = styled.nav`
+export const Nav = styled.nav<NavProps>`
   display: flex;
   align-items: center;
   gap: 3.6rem;
@@ -42,6 +46,22 @@ export const Nav = styled.nav`
   left: 0;
   right: 0;
   justify-content: center;
+
+  @media(max-width: 768px) {
+    background: ${props => props.theme.BACKGROUND_COLOR};
+    width: 100%;
+    left: unset;
+    right: 0;
+    top: 8.1rem;
+    height: calc(100vh - 8.1rem);
+    border-left: 1px solid ${props => props.theme.SIDEBAR_COLOR};
+
+    flex-direction: column;
+    gap: 6.4rem;
+
+    transform: ${props => props.toggled ? `translateX(0%)` : `translateX(100%)`};
+    transition: transform 0.3s ease-in-out;
+  }
 `;
 
 export const NavItem = styled.a<NavItemProps>`
@@ -63,12 +83,6 @@ export const NavItem = styled.a<NavItemProps>`
 
   &:hover {
     color: ${props => props.theme.TEXT_PRIMARY};
-  }
-
-  @media(max-width: 768px) {
-    span {
-      display: none;
-    }
   }
 `;
 
@@ -95,6 +109,11 @@ export const User = styled.div`
     border-radius: 50%;
     object-fit: cover;
   }
+
+  @media(max-width: 768px) {
+    position: absolute;
+    right: 10rem;
+  }
 `;
 
 export const SignInButton = styled.button`
@@ -118,5 +137,27 @@ export const SignInButton = styled.button`
   span {
     font-size: 1.35rem;
     color: ${props => props.theme.BACKGROUND_COLOR};
+  }
+
+  @media(max-width: 768px) {
+    position: absolute;
+    right: 10rem;
+  }
+`;
+
+export const Burger = styled.div`
+  display: none;
+
+  @media(max-width: 768px) {
+    display: block;
+
+    div {
+    height: 3px;
+    width: 25px;
+    background: #f0f0f5;
+    margin: 4px 0;
+  }
+
+    cursor: pointer;
   }
 `;

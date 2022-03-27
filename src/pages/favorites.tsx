@@ -47,7 +47,9 @@ export default function Favorites() {
           />
         </>
       ) : (
-        <h1>Usuário não entrou com uma conta Google</h1>
+        <h4 style={{
+          textAlign: "center",
+        }}>Faça o login com uma conta Google para continuar</h4>
       )}
     </Layout>
   );

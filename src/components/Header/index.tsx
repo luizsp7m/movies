@@ -1,25 +1,33 @@
 import Link from "next/link";
 
-import { Container, Wrapper, Logo, Nav, NavItem, User, SignInButton } from "./styles";
+import { Container, Wrapper, Logo, Nav, NavItem, User, SignInButton, Burger } from "./styles";
 import { FaBookmark, FaHotjar, FaMicrosoft } from "react-icons/fa";
 import { MdLocalMovies } from "react-icons/md";
+import { RiClapperboardFill } from "react-icons/ri";
 import { BsCollectionPlayFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 import { useAuth } from "../../contexts/AuthContext";
+import { useState } from "react";
 
 export function Header() {
   const { asPath } = useRouter();
 
   const { signInWithGoogle, logout, user } = useAuth();
 
+  const [toggle, setToggle] = useState(false);
+
   return (
     <Container>
       <Wrapper>
         <Logo>
-          <FaHotjar />
+          <Link href="/" passHref>
+            <a>
+              <RiClapperboardFill />
+            </a>
+          </Link>
         </Logo>
 
-        <Nav>
+        <Nav toggled={toggle}>
           <Link href="/" passHref>
             <NavItem selected={asPath === "/" && true}>
               <FaMicrosoft />
@@ -60,6 +68,12 @@ export function Header() {
             <img src={user.avatar} alt={user.name} />
           </User>
         )}
+
+        <Burger onClick={() => setToggle(!toggle)}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </Burger>
       </Wrapper>
     </Container>
   );

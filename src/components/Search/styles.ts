@@ -28,10 +28,10 @@ export const Container = styled.form`
     border: 0;
     background: 0;
     font-size: 1.55rem;
-    color: ${props => props.theme.TEXT_PRIMARY};
+    color: ${props => props.theme.TEXT_SECONDARY};
 
     &::placeholder {
-      color: ${props => props.theme.TEXT_PRIMARY};
+      color: ${props => props.theme.TEXT_SECONDARY};
       font-size: 1.55rem;
     }
   }

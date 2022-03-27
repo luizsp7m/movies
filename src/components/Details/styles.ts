@@ -95,7 +95,7 @@ export const Information = styled.div`
       }
 
       &:hover {
-        color: ${props => props.theme.TEXT_PRIMARY};
+        background: ${props => props.theme.TEXT_PRIMARY};
       }
     }
   }

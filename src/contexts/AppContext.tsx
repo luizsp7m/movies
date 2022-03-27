@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, query, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { db } from "../services/firebase";
 import { useAuth } from "./AuthContext";
@@ -40,6 +40,7 @@ export function AppProvider({ children }: AppProviderProps) {
         mediaId,
         mediaType,
         userId: user.id,
+        created_at: new Date().toISOString(),
       });
 
       const message = mediaType === "movie" ? "Filme adicionado aos favoritos" : "Série adicionada aos favoritos";
@@ -74,7 +75,7 @@ export function AppProvider({ children }: AppProviderProps) {
     if (user) {
       const favoritesRef = collection(db, "favorites");
 
-      const q = query(favoritesRef, where("userId", "==", user.id));
+      const q = query(favoritesRef, where("userId", "==", user.id), orderBy("created_at"));
 
       const unsubscribe = onSnapshot(q, snapshot => {
         let movies: Favorites[] = [];
