@@ -46,12 +46,12 @@ export function CardItem({ data, media }: Props) {
 export function MovieCard({ movie }: MovieCardProps) {
   const { addToFavorites, removeFromFavorites, myMovies } = useApp();
 
-  let exists = myMovies.find(myMovie => myMovie.mediaId === movie.id);
+  const exists = myMovies.find(myMovie => myMovie.mediaId === movie.id);
 
   return (
     <Container>
       <CardImage>
-        <Link href={`/movie/${movie.id}`}>
+        <Link href={`/movies/${movie.id}`}>
           <a>
             <img src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}` : `/assets/image-default.jpg`} alt={movie.title} />
           </a>
@@ -86,12 +86,12 @@ export function MovieCard({ movie }: MovieCardProps) {
 export function SerieCard({ serie }: SerieCardProps) {
   const { addToFavorites, removeFromFavorites, mySeries } = useApp();
 
-  let exists = mySeries.find(mySerie => mySerie.mediaId === serie.id);
+  const exists = mySeries.find(mySerie => mySerie.mediaId === serie.id);
 
   return (
     <Container>
       <CardImage>
-        <Link href={`/`}>
+        <Link href={`/series/${serie.id}`}>
           <a>
             <img src={serie.backdrop_path ? `https://image.tmdb.org/t/p/w500/${serie.backdrop_path}` : `/assets/image-default.jpg`} alt={serie.name} />
           </a>

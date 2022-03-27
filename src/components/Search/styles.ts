@@ -11,6 +11,7 @@ export const Container = styled.form`
     height: 4.4rem;
     width: 4.4rem;
     background: 0;
+    border-radius: 0.25rem;
     cursor: pointer;
 
     svg {

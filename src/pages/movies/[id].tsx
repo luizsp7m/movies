@@ -3,33 +3,28 @@ import { Details } from "../../components/Details";
 import { Layout } from "../../components/Layout";
 import { details } from "../../utils/getData";
 
-interface MovieProps {
+interface Props {
   movie: {
+    id: number;
+    overview: string | null;
     backdrop_path: string | null;
+    release_date: string;
+    title: string;
+    vote_average: number;
+    runtime: number | null;
     genres: Array<{
       id: number;
       name: string;
     }>
-    id: number;
-    original_title: string;
-    overview: string | null;
-    poster_path: string | null;
-    production_companies: Array<{
-      name: string;
-      id: number;
-      logo_path: string | null;
-    }>
-    release_date: string;
-    title: string;
-    vote_average: number;
-  }
+  };
 }
 
-export default function Movie({ movie }: MovieProps) {
+export default function Media({ movie }: Props) {
   return (
-    <Layout title="Filme ou série">
-      <Details 
+    <Layout title={movie.title}>
+      <Details
         data={movie}
+        media="movie"
       />
     </Layout>
   );

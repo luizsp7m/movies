@@ -12,8 +12,6 @@ export default function Favorites() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [series, setSeries] = useState<Serie[]>([]);
 
-  const [count, setCount] = useState<number[]>([]);
-
   const { myMovies, mySeries } = useApp();
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { CardItem } from "../CardItem";
 import { Container, Grid } from "./styles";
@@ -11,11 +12,15 @@ interface Props {
 }
 
 export function CardList({ title, data, media, numberPages, currentPage }: Props) {
+  const { asPath } = useRouter();
+
   useEffect(() => {
-    window.scrollTo({
-      behavior: "smooth",
-      top: 0,
-    });
+    if (!asPath.includes("favorites")) {
+      window.scrollTo({
+        behavior: "smooth",
+        top: 0,
+      });
+    }
   }, [data]);
 
   return (

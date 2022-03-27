@@ -28,14 +28,14 @@ export function Header() {
           </Link>
 
           <Link href="/movies" passHref>
-            <NavItem selected={asPath === "/movies" && true}>
+            <NavItem selected={asPath.includes("movies") && true}>
               <MdLocalMovies />
               <span>Filmes</span>
             </NavItem>
           </Link>
 
           <Link href="/series" passHref>
-            <NavItem selected={asPath === "/series" && true}>
+            <NavItem selected={asPath.includes("series") && true}>
               <BsCollectionPlayFill />
               <span>Séries</span>
             </NavItem>

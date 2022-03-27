@@ -1,81 +1,101 @@
 import styled from "styled-components";
 
+interface BackgroundImageProps {
+  image: string;
+}
+
 export const Container = styled.div`
   display: flex;
-  gap: 3.2rem;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    align-self: flex-start;
+    margin-bottom: 3.2rem;
+    background: ${props => props.theme.BACKGROUND_COLOR};;
+    color: ${props => props.theme.TEXT_PRIMARY};
+    border: 0;
+    outline: 0;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.25s ease-in-out, background 0.25s ease-in-out;
+    cursor: pointer;
+  }
 `;
 
-export const PosterImage = styled.div`
-  img {
-    width: 25rem;
-    height: auto;
-    object-fit: cover;
-  }
+export const BackgroundImage = styled.div<BackgroundImageProps>`
+  background: ${props => `url(${props.image})`};
+  height: 30rem;
+  width: 100%;
+  background-position: center 20%;
+  background-size: cover;
+  border-radius: 0.50rem;
 `;
 
 export const Information = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 2.4rem;
+  gap: 2.2rem;
+  padding: 3.2rem;
+  background: ${props => props.theme.SIDEBAR_COLOR};
+  width: 85%;
+  max-width: 768px;
+  position: relative;
+  top: -5rem;
+  margin-bottom: -5rem;
+  border-radius: 0.50rem;
 
-  h1 {
-    font-size: 2.8rem;
-  }
+  div.header {
+    time {
+      font-size: 1.45rem;
+      color: ${props => props.theme.TEXT_SECONDARY};;
+    }
 
-  div.row {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-
-    div.sub-row {
-      display: flex;
-      align-items: center;
-      gap: 1.6rem;
-
-      time {
-        font-size: 1.45rem;
-      }
-
-      span {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        font-size: 1.45rem;
-      }
+    h1 {
+      font-size: 1.85rem;
+      margin: 0.8rem 0;
     }
 
     div.genres {
       display: flex;
+      align-items: center;
       gap: 1.6rem;
 
       span {
-        font-size: 1.6rem;
-        border-radius: 0.25rem;
-        padding: 0.6rem 1.40rem;
-        background: ${props => props.theme.SIDEBAR_COLOR};
+        font-size: 1.45rem;
+        color: ${props => props.theme.TEXT_SECONDARY};;
       }
     }
   }
 
-  p {
-    font-size: 1.6rem;
+  div.body {
+    font-size: 1.55rem;
     line-height: 3.2rem;
   }
 
-  button {
-    padding: 1.6rem;
-    border: 0;
-    outline: 0;
-    border-radius: 0.25rem;
-    font-size: 1.45rem;
-    transition: color 0.25s ease-in-out, background 0.25s ease-in-out;
-    cursor: pointer;
+  div.footer {
+    button {
+      background: #FAC305;
+      color: ${props => props.theme.SIDEBAR_COLOR};
+      padding: 1rem 2rem;
+      border: 0;
+      outline: 0;
+      border-radius: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: color 0.25s ease-in-out, background 0.25s ease-in-out;
+      cursor: pointer;
 
-    &:hover {
-      background: ${props => props.theme.LOGO_COLOR};
-      color: ${props => props.theme.TEXT_PRIMARY};
+      svg {
+        font-size: 1.35rem;
+      }
+
+      &:hover {
+        color: ${props => props.theme.TEXT_PRIMARY};
+      }
     }
   }
 `;
