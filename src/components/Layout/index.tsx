@@ -16,7 +16,7 @@ export function Layout({ children, title }: Props) {
   return (
     <Container>
       <Head>
-        <title>Movies - {title}</title>
+        <title>Mediafy - {title}</title>
       </Head>
 
       <Header />
