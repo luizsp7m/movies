@@ -1,20 +1,29 @@
-### Movies APP
+### Mediafy
 
-Lista de filmes e séries disponibilizados pelo TMDB <br /> <br />
-O site se encontra atualmente em desenvolvimento, mas já cumpre grande parte das suas funcionalidades, como: 
+Aplicação que lista filmes e séries disponibilizados pelo The Movie Database API e permite que o usuário os adicione como favoritos
+
+Veja o resultado clicando <b><a href="https://movies-rosy-nu.vercel.app/" target="_blank">aqui</a></b>
+
+### Funcionalidades
 - Listar filmes que serão lançados ainda esse ano
 - Listar os filmes e séries que são tendência no momento
 - Buscar por filmes ou séries
+- Ver informações do filme ou série (ano de lançamento, gênero, descrição...)
 - Páginação
+- Adicionar filmes e séries como favoritos
+- Login com conta Google
 
-Veja o resultado parcial clicando <b><a href="https://movies-rosy-nu.vercel.app/" target="_blank">aqui</a></b>
+### Imagens do projeto
 
-Os próximos passos são implementar a autenticação e permitir que o usuário salve seus filmes e séries favoritos
+##### Informações do filme ou série
+![](./public/design/details.png)
 
-![](./public/design/preview-desktop.png)
+##### Filmes e séries adicionados como favoritos
+![](./public/design/favorites.png)
 
 ### Tecnologias
 - Next.js
 - Styled components
 - React Slick
 - Axios
+- Firebase
