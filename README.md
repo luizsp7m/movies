@@ -1,6 +1,6 @@
 ### Mediafy
 
-Aplicação que lista filmes e séries disponibilizados pelo The Movie Database API e permite que o usuário os adicione como favoritos
+Aplicação que lista filmes e séries disponibilizados pelo The Movie Database API e permite que o usuário autenticado os adicione como favoritos
 
 Veja o resultado clicando <b><a href="https://movies-rosy-nu.vercel.app/" target="_blank">aqui</a></b>
 
