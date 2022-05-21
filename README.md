@@ -4,6 +4,8 @@ Aplicação que lista filmes e séries disponibilizados pelo The Movie Database 
 
 Veja o resultado clicando <b><a href="https://movies-rosy-nu.vercel.app/" target="_blank">aqui</a></b>
 
+Clique <a href="https://github.com/luizsp7m/mediafy-mobile">aqui</a> para ver o repositório da versão mobile desse projeto
+
 ### Funcionalidades
 - Listar filmes que serão lançados ainda esse ano
 - Listar os filmes e séries que são tendência no momento
